@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Fewnu</string>
+    <string name="title_activity_accueil">Accueil</string>
+    <string name="menu_vente">Vente</string>
+    <string name="vente">Vente</string>
+    <string name="depense">Depense</string>
+    <string name="pret">Pret</string>
+    <string name="title_activity_depense">DepenseActivity</string>
+    <string name="title_activity_pret">PretActivity</string>
+</resources>
