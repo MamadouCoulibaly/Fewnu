@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -34,12 +35,13 @@ public class AccueilActivity extends AppCompatActivity {
 
 
 
-    FirebaseDatabase database;
-    DatabaseReference myRef;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
+        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("ventes");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -78,12 +80,28 @@ public class AccueilActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent venteActivity = new Intent(AccueilActivity.this, AjoutVenteActivity.class);
-                startActivity(venteActivity);
+
+                if (tabLayout.getSelectedTabPosition()==0){
+                    Intent venteActivity = new Intent(AccueilActivity.this, AjoutVenteActivity.class);
+                    startActivity(venteActivity);
+                }
+                else if (tabLayout.getSelectedTabPosition()==1){
+                    Intent venteActivity = new Intent(AccueilActivity.this, AjoutDepenseActivity.class);
+                    startActivity(venteActivity);
+                }
+                else {
+                    Intent venteActivity = new Intent(AccueilActivity.this, AjoutPretActivity.class);
+                    startActivity(venteActivity);
+                }
+
+
             }
         });
 
 
+
+    }
+    private void LireVentes(){
 
     }
 

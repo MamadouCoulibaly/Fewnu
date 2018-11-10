@@ -37,6 +37,7 @@ public class AjoutVenteActivity extends AppCompatActivity {
                 Vente vente = new Vente(designation.getText().toString(), Double.parseDouble(prix.getText().toString()));
                 myRef.child(id).setValue(vente);
                 Intent listvente = new Intent(AjoutVenteActivity.this, AccueilActivity.class );
+                startActivity(listvente);
             }
         });
 
