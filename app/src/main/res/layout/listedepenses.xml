@@ -10,10 +10,11 @@
         android:id="@+id/listdesignation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="05dp"
         android:text="Designation"
-        android:textStyle="bold"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="22sp"
-        android:layout_marginLeft="05dp"/>
+        android:textStyle="normal" />
 
 
     <TextView
@@ -22,8 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="200dp"
         android:text="Prix"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="normal" />
 
 
 
