@@ -46,16 +46,6 @@ public class AccueilActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent venteActivity = new Intent(AccueilActivity.this, AjoutVenteActivity.class);
-                startActivity(venteActivity);
-            }
-        });
-
-        final ArrayList<String> ids = new ArrayList<>();
         final ArrayList<String> designations = new ArrayList<>();
         final ArrayList<Double> prix = new ArrayList<>();
         // Read from the database
@@ -70,7 +60,6 @@ public class AccueilActivity extends AppCompatActivity {
                 Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
                 while((iterator.hasNext())){
                     Vente value = iterator.next().getValue(Vente.class);
-                    ids.add(value.getId());
                     designations.add(value.getDesignation());
                     prix.add(value.getPrix());
                     ((ListVentes)(((ListView)findViewById(R.id.peopleList)).getAdapter())).notifyDataSetChanged();
@@ -83,7 +72,20 @@ public class AccueilActivity extends AppCompatActivity {
                 //Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+        ((ListView)findViewById(R.id.peopleList)).setAdapter(new ListVentes(designations,prix,this));
+        //setAdapter(new ArrayAdapter<>(getApplicationContext(), R.layout.people_list_row, R.id.personNameTv,names));
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent venteActivity = new Intent(AccueilActivity.this, AjoutVenteActivity.class);
+                startActivity(venteActivity);
+            }
+        });
+
+
 
     }
+
 
 }

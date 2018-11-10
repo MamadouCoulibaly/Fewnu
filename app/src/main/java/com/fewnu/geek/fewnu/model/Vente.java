@@ -10,11 +10,6 @@ public class Vente {
         this.prix = prix;
     }
 
-    public Vente( String id,String designation, Double prix) {
-        this.designation = designation;
-        this.prix = prix;
-        this.id = id;
-    }
 
     public String getId() {
         return id;
