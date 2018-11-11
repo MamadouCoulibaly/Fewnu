@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Fewnu</string>
     <string name="title_activity_accueil">Accueil</string>
+    <string name="action_settings">Settings</string>
     <string name="menu_vente">Vente</string>
     <string name="vente">Vente</string>
     <string name="depense">Depense</string>

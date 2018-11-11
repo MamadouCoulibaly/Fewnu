@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean verification() {
         String phone = mphoneInput.getText().toString();
         boolean retour=true;
-        if (phone.length() != 13) {
+        if (phone.length() != 9) {
             mphoneInput.setError("Ajouter un bon numéro Svp !!");
             mphoneInput.requestFocus();
             retour = false;

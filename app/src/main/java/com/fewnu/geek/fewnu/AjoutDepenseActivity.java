@@ -1,6 +1,7 @@
 package com.fewnu.geek.fewnu;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,7 @@ public class AjoutDepenseActivity extends AppCompatActivity {
                 myRef.child(id).setValue(depense);
                 Intent listdepense = new Intent(AjoutDepenseActivity.this, DepenseActivity.class );
                 startActivity(listdepense);
+
             }
         });
     }

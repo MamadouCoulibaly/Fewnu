@@ -27,13 +27,16 @@ public class FisrtActivity extends AppCompatActivity {
      EditText mCodeInput;
      Button mValiderButton;
      String codeSent;
-    FirebaseAuth mAuth;
+     String numero;
+     StringBuilder stringBuilder;
+     FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fisrt);
-
+        stringBuilder = new StringBuilder("+221");
+        numero = stringBuilder.append(MainActivity.phone).toString();
 
         mNomInput = (EditText) findViewById(R.id.nomcomplet) ;
         mCodeInput = (EditText) findViewById(R.id.code);
@@ -70,7 +73,7 @@ public class FisrtActivity extends AppCompatActivity {
     }
     void verif(){
       PhoneAuthProvider.getInstance().verifyPhoneNumber(
-              MainActivity.phone,        // Phone number to verify
+              numero,        // Phone number to verify
               60,                 // Timeout duration
               TimeUnit.SECONDS,   // Unit of timeout
               this,               // Activity (for callback binding)
