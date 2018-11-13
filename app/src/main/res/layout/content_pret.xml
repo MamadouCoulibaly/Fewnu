@@ -8,27 +8,7 @@
     tools:context=".AccueilActivity"
     tools:showIn="@layout/activity_pret">
 
-    <android.support.design.widget.TabLayout
-        android:layout_width="380dp"
-        android:layout_height="49dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="2dp">
 
-        <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/vente" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/depense" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pret" />
-    </android.support.design.widget.TabLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,10 +24,18 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="280dp"
         android:layout_marginTop="70dp"
-        android:text="Reste"
+        android:text="Montant "
         android:textSize="22sp"
         android:textStyle="bold" />
+    <ListView
+        android:id="@+id/listviewpret"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        >
 
+    </ListView>
+    <include layout="@layout/barremenu" />
 
 
 

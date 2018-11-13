@@ -13,10 +13,12 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -38,20 +40,26 @@ public class AccueilActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+    ListView listView;
+    static String designation;
+    static Double prixu=0d;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
+            listView=(ListView)findViewById(R.id.peopleList);
+
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("ventes");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab =(FloatingActionButton)findViewById(R.id.fab);
 
         final ArrayList<String> designations = new ArrayList<>();
-        final ArrayList<Double> prix = new ArrayList<>();
         // Read from the database
+        final ArrayList<Double> prix = new ArrayList<>();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -78,6 +86,21 @@ public class AccueilActivity extends AppCompatActivity {
         ((ListView)findViewById(R.id.peopleList)).setAdapter(new ListVentes(designations,prix,this));
         //setAdapter(new ArrayAdapter<>(getApplicationContext(), R.layout.people_list_row, R.id.personNameTv,names));
 
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                designation = designations.get(position);
+                prixu =  prix.get(position);
+                String str=listView.getItemAtPosition(position).toString();
+                Intent it=new Intent(AccueilActivity.this,UpdateActivity.class);
+                startActivity(it);
+            }
+        });
+
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,13 +119,12 @@ public class AccueilActivity extends AppCompatActivity {
                 }
 
 
+
+
             }
         });
 
 
-
-    }
-    private void LireVentes(){
 
     }
 
