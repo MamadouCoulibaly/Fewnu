@@ -13,27 +13,25 @@ import java.util.ArrayList;
 
 public class ListDepenses extends BaseAdapter {
 
-    private ArrayList<String> designations;
-    private ArrayList<Double> prix;
+    private ArrayList<Depense> depenses;
     private AppCompatActivity activity;
 
     public ListDepenses() {
     }
 
-    public ListDepenses(ArrayList<String> designations, ArrayList<Double> prix, AppCompatActivity activity) {
-        this.designations = designations;
-        this.prix = prix;
+    public ListDepenses(ArrayList<Depense> depenses, AppCompatActivity activity) {
+        this.depenses = depenses;
         this.activity = activity;
     }
 
     @Override
     public int getCount() {
-        return designations.size();
+        return depenses.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return designations.get(position);
+        return depenses.get(position);
     }
 
     @Override
@@ -44,8 +42,8 @@ public class ListDepenses extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         view =  LayoutInflater.from(activity.getApplicationContext()).inflate(R.layout.listedepenses,viewGroup,false);
-        ((TextView)view.findViewById(R.id.listdesignation)).setText(String.valueOf(designations.get(position)));
-        ((TextView)view.findViewById(R.id.listprix)).setText(prix.get(position).toString());
+        ((TextView)view.findViewById(R.id.listdesignation)).setText(String.valueOf(depenses.get(position).getDesignation()));
+        ((TextView)view.findViewById(R.id.listprix)).setText(depenses.get(position).getPrix().toString());
         return view;
     }
 }

@@ -34,7 +34,7 @@ public class AjoutVenteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String id = myRef.push().getKey();
-                Vente vente = new Vente(designation.getText().toString(), Double.parseDouble(prix.getText().toString()));
+                Vente vente = new Vente(id, designation.getText().toString(), Double.parseDouble(prix.getText().toString()));
                 myRef.child(id).setValue(vente);
                 Intent listvente = new Intent(AjoutVenteActivity.this, AccueilActivity.class );
                 startActivity(listvente);

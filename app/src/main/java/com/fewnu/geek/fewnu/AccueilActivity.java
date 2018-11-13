@@ -41,8 +41,9 @@ public class AccueilActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     ListView listView;
-    static String designation;
-    static Double prixu=0d;
+    static String designation, idV;
+    static Double prixu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +58,8 @@ public class AccueilActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         FloatingActionButton fab =(FloatingActionButton)findViewById(R.id.fab);
 
-        final ArrayList<String> designations = new ArrayList<>();
+        final ArrayList<Vente> ventes = new ArrayList<>();
         // Read from the database
-        final ArrayList<Double> prix = new ArrayList<>();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -71,8 +71,7 @@ public class AccueilActivity extends AppCompatActivity {
                 Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
                 while((iterator.hasNext())){
                     Vente value = iterator.next().getValue(Vente.class);
-                    designations.add(value.getDesignation());
-                    prix.add(value.getPrix());
+                    ventes.add(value);
                     ((ListVentes)(((ListView)findViewById(R.id.peopleList)).getAdapter())).notifyDataSetChanged();
                 }
             }
@@ -83,7 +82,7 @@ public class AccueilActivity extends AppCompatActivity {
                 //Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-        ((ListView)findViewById(R.id.peopleList)).setAdapter(new ListVentes(designations,prix,this));
+        ((ListView)findViewById(R.id.peopleList)).setAdapter(new ListVentes(ventes,this));
         //setAdapter(new ArrayAdapter<>(getApplicationContext(), R.layout.people_list_row, R.id.personNameTv,names));
 
 
@@ -91,8 +90,9 @@ public class AccueilActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                designation = designations.get(position);
-                prixu =  prix.get(position);
+                idV = ventes.get(position).getId();
+                designation = ventes.get(position).getDesignation();
+                prixu =  ventes.get(position).getPrix();
                 String str=listView.getItemAtPosition(position).toString();
                 Intent it=new Intent(AccueilActivity.this,UpdateActivity.class);
                 startActivity(it);

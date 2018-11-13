@@ -5,11 +5,12 @@ public class Vente {
     private Double prix;
     private String id;
 
-    public Vente(String designation, Double prix) {
+
+    public Vente(String id, String designation, Double prix) {
         this.designation = designation;
         this.prix = prix;
+        this.id = id;
     }
-
 
     public String getId() {
         return id;

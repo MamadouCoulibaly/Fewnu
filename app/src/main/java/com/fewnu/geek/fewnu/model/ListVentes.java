@@ -14,27 +14,25 @@ import java.util.ArrayList;
 
 public class ListVentes extends BaseAdapter {
 
-    private ArrayList<String> designations;
-    private ArrayList<Double> prix;
+    private ArrayList<Vente> ventes;
     private AppCompatActivity activity;
 
     public ListVentes() {
     }
 
-    public ListVentes(ArrayList<String> designations, ArrayList<Double> prix, AppCompatActivity activity) {
-        this.designations = designations;
-        this.prix = prix;
+    public ListVentes(ArrayList<Vente> ventes, AppCompatActivity activity) {
+        this.ventes = ventes;
         this.activity = activity;
     }
 
     @Override
     public int getCount() {
-        return designations.size();
+        return ventes.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return designations.get(position);
+        return ventes.get(position);
     }
 
     @Override
@@ -45,8 +43,8 @@ public class ListVentes extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         view =  LayoutInflater.from(activity.getApplicationContext()).inflate(R.layout.listeventes,viewGroup,false);
-        ((TextView)view.findViewById(R.id.listdesignation)).setText(String.valueOf(designations.get(position)));
-        ((TextView)view.findViewById(R.id.listprix)).setText(prix.get(position).toString());
+        ((TextView)view.findViewById(R.id.listdesignation)).setText(String.valueOf(ventes.get(position).getDesignation()));
+        ((TextView)view.findViewById(R.id.listprix)).setText(ventes.get(position).getPrix().toString());
         return view;
     }
 }

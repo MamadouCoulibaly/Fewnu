@@ -24,7 +24,6 @@ public class UpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("ventes");
-        final String id = myRef.push().getKey();
         ed1=(EditText)findViewById(R.id.updatedesignation);
         ed2=(EditText)findViewById(R.id.updateprix);
         modifier=(Button)findViewById(R.id.modifier);
@@ -34,8 +33,8 @@ public class UpdateActivity extends AppCompatActivity {
         modifier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myRef.child(id).child("designation").setValue(ed1.getText().toString());
-                myRef.child(id).child("prix").setValue(Double.parseDouble(ed2.getText().toString()));
+                myRef.child(AccueilActivity.idV).child("designation").setValue(ed1.getText().toString());
+                myRef.child(AccueilActivity.idV).child("prix").setValue(Double.parseDouble(ed2.getText().toString()));
                 Intent itr= new Intent(UpdateActivity.this,AccueilActivity.class);
                 startActivity(itr);
             }
@@ -43,7 +42,9 @@ public class UpdateActivity extends AppCompatActivity {
         supprimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                myRef.child(AccueilActivity.idV).removeValue();
+                Intent intentdelete= new Intent(UpdateActivity.this,AccueilActivity.class);
+                startActivity(intentdelete);
             }
         });
 

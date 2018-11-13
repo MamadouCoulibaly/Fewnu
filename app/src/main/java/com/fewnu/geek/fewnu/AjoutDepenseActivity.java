@@ -31,7 +31,7 @@ public class AjoutDepenseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String id = myRef.push().getKey();
-                Depense depense = new Depense(designation.getText().toString(), Double.parseDouble(prix.getText().toString()));
+                Depense depense = new Depense(id, designation.getText().toString(), Double.parseDouble(prix.getText().toString()));
                 myRef.child(id).setValue(depense);
                 Intent listdepense = new Intent(AjoutDepenseActivity.this, DepenseActivity.class );
                 startActivity(listdepense);
